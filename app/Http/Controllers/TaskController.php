@@ -43,6 +43,15 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
+
+        $this->validate( $request, [
+            'task_title' => 'required',
+            'task'       => 'required',
+            'project_id' => 'required|numeric',
+            'photos.*'   => 'sometimes|required|mimes:png,gif,jpeg,jpg,txt,pdf,doc',  // photos is an array: photos.*
+            'duedate'    => 'required'
+        ]) ;
+
         $task = Task::create([
             'project_id' => $request->project_id,
             'user_id'    => $request->user,
@@ -95,6 +104,14 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         $update_task = Task::find($id);
+        
+        $this->validate( $request, [
+            'task_title' => 'required',
+            'task'       => 'required',
+            'project_id' => 'required|numeric',
+            'photos.*'   => 'sometimes|required|mimes:png,gif,jpeg,jpg,txt,pdf,doc' // photos is an array: photos.*
+        ]) ;
+
 
         $update_task->task_title = $request->task_title; 
         $update_task->task       = $request->task;
