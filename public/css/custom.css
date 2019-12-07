@@ -1,3 +1,4 @@
+/* @import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates:400,700'); */
 
 @font-face {
     font-family: Montserrat;
@@ -17,6 +18,7 @@
 html, body {
     background-color: #fff;
     color: #636b6f;
+    /* font-family: 'Raleway', sans-serif; */
     font-family: Montserrat;
     font-weight: 100;
     height: 100vh;
@@ -33,14 +35,6 @@ body#app {
 
 nav#myNavbar a {
     color: #fff;
-}
-
-.navbar-brand h1{
-    color: white;
-}
-
-.navbar-brand h1:hover{
-    color: #e75f2d;
 }
 
 ul.dropdown-menu {
@@ -69,18 +63,11 @@ ul.dropdown-menu {
     color: #fff;
     border-color: #d3e0e9;
     background: #3c4056;
-    background: -moz-linear-gradient(top,rgba(60,64,86,1) 0,rgba(46,50,68,1) 41%,rgba(46,50,68,1) 100%);
-    background: -webkit-linear-gradient(top,rgba(60,64,86,1) 0,rgba(46,50,68,1) 41%,rgba(46,50,68,1) 100%);
-    background: linear-gradient(to bottom,rgba(60,64,86,1) 0,rgba(46,50,68,1) 41%,rgba(46,50,68,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3c4056', endColorstr='#2e3244', GradientType=0 );
+
 }
 
 .panel-default {
-    background: #f1e8c9;
-    background: -moz-linear-gradient(top,rgba(241,232,201,1) 0,rgba(225,219,196,1) 41%,rgba(191,186,167,1) 100%);
-    background: -webkit-linear-gradient(top,rgba(241,232,201,1) 0,rgba(225,219,196,1) 41%,rgba(191,186,167,1) 100%);
-    background: linear-gradient(to bottom,rgba(241,232,201,1) 0,rgba(225,219,196,1) 41%,rgba(191,186,167,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1e8c9', endColorstr='#bfbaa7', GradientType=0 );
+    background: white;
 }
 
 .position-ref {
@@ -124,8 +111,12 @@ ul.dropdown-menu {
     border-left-color: #111111;
 }
 
+.my-editor{
+    resize: none;
+}
+
 .label-jc {
-    background: #E75F2D;
+    background: black;
 }
 
 .label-jc a { color: #fff ; }
@@ -192,7 +183,7 @@ ul#images_col li {
     padding-bottom: 10px;
 }
 
-
+/*  =================== MEDIA QUERIES ================== */
 
 
 @media (max-width: 767px) {

@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Managizer</title>
+
+    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
@@ -24,20 +27,21 @@
                         <span class="icon-bar"></span>
                     </button>
 
+                    <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                       <h1>MANAGIZER</h1>
+                       <h1 style="color:white; padding:0; margin:0">MANAGIZER</h1>
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                  
+                    <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
                     </ul>
 
-                 
+                    <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                      
+                        <!-- Authentication Links -->
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
@@ -70,7 +74,7 @@
         @yield('content')
     </div>
 
-
+    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

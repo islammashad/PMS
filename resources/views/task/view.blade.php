@@ -26,26 +26,8 @@ task_view->id: {{ $task_view->id }}<br>
 
     <div class="row">
         <hr>
-        @if( count($images_set) > 0 ) 
-            <div class="col-md-6">
-
-                <div class="panel panel-jc">
-                    <div class="panel-heading">Uploaded Images</div>
-                    <div class="panel-body">
-                        <ul id="images_col">
-                            @foreach ( $images_set as $image )
-                                <li> 
-                                    <a href="<?php echo asset("images/$image") ?>" data-lightbox="images-set">
-                                        <img class="img-responsive" src="<?php echo asset("images/$image") ?>">
-                                    </a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
-                </div>
-
-            </div>
-        @endif
+       
+    
 
 
         
@@ -81,7 +63,7 @@ task_view->id: {{ $task_view->id }}<br>
     <div class="panel panel-jc">
         <div class="panel-heading">Project</div>
         <div class="panel-body">
-            <span class="label label-jc">
+            <span>
                 <a href="{{ route('task.list', [ 'projectid' => $task_view->project->id ]) }}">{{ $task_view->project->project_name }}</a>
             </span>
         </div>

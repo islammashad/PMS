@@ -8,21 +8,6 @@
         <h1>ALL TASKS</h1>
     </div>
 
-    <div class="col-md-6">
-        <form action="{{ route('task.search') }}" class="navbar-form" role="search" method="GET">
-            <div class="input-group">
-                <input type="text" class="form-control" placeholder="Search in Tasks..." name="search_task">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default">
-                        <span class="glyphicon glyphicon-search">
-                            <span class="sr-only">Search...</span>
-                        </span>
-                    </button>
-                </span>
-            </div>
-        </form>
-    </div> 
-
 </div>
 
 <div class="table-responsive">
@@ -30,10 +15,10 @@
     <thead>
       <tr>
         <th>Created At</th>
-        <th><a href="{{ route('task.sort', [ 'key' => 'task' ]) }}">Task Title <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span> </a></th>
+        <th>Task Title</th>
         <th>Assigned To / Project</th>
-        <th><a href="{{ route('task.sort', [ 'key' => 'priority' ]) }}">Priority <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span> </a></th>
-        <th><a href="{{ route('task.sort', [ 'key' => 'completed' ]) }}">Status <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span> </a></th>
+        <th>Priority</th>
+        <th>Status</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -42,7 +27,7 @@
     <tbody>
     @foreach ( $tasks as $task)
       <tr>
-        <td>{{ Carbon\Carbon::parse($task->created_at)->format('m-d-Y') }}</td>
+        <td>{{ Carbon\Carbon::parse($task->created_at)->format('d-m-Y') }}</td>
         <td>{{ $task->task_title }} </td>
 
         <td>
@@ -52,7 +37,7 @@
                     <a href="{{ route('user.list', [ 'id' => $user->id ]) }}">{{ $user->name }}</a>
                 @endif
             @endforeach
-            <span class="label label-jc">{{ $task->project->project_name }}</span>
+            <span style="font-weight:bold; color:black">/ {{ $task->project->project_name }}</span>
 
         </td>
 
