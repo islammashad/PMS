@@ -99,14 +99,15 @@ class UserController extends Controller
         if ($request->has('password') ) $update_user->password = bcrypt($request->password) ;
         $update_user->save() ;
 
-	    // reset demo user 
+        // reset demo user 
+        /*
 	    $reset_demo = User::find(5) ;
 	    $reset_demo->admin = 1 ;
 	    $reset_demo->name = 'Demo User' ;
 	    $reset_demo->email = 'demo@test.com' ;
 	    $reset_demo->password = bcrypt('demo2017') ;
 	    $reset_demo->save() ;         
-
+*/
         Session::flash('success', 'User was sucessfully edited') ;
         return redirect()->route('user.index') ;
     }

@@ -38,8 +38,9 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
                 
-
-                                                
+                        <li>
+                            <a href="{{ route('user.index') }}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users</a>
+                        </li>                   
 
                         <li>
                             <a href="{{ route('project.show') }}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Projects</a>
@@ -52,6 +53,8 @@
                                 <li><a href="{{ route('task.create') }}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create new Task</a></li>
                             </ul>
                         </li>
+
+
 
 
                     </ul>
