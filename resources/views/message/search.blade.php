@@ -2,25 +2,24 @@
 
 @section('content')
 
-<h1>Task List for:  "{{ $username->name }}" </h1>
+
+<h1>Displaying Results for:  "{{ $value }}" </h1>
 
 <table class="table table-striped">
     <thead>
       <tr>
         <th>Task Title</th>
-        <th>Project Name</th>
         <th>Priority</th>
         <th>Status</th>
         <th>Actions</th>
       </tr>
     </thead>
 
-@if ( !$task_list->isEmpty() ) 
+@if ( !$tasks->isEmpty() ) 
     <tbody>
-    @foreach ( $task_list as $task)
+    @foreach ( $tasks as $task)
       <tr>
         <td>{{ $task->task_title }} </td>
-        <td>{{ $task->project->project_name }}</td>
         <td>
             @if ( $task->priority == 0 )
                 <span class="label label-info">Normal</span>
@@ -36,7 +35,8 @@
             @endif
         </td>
         <td>
-            <a href="{{ route('task.view', ['id' => $task->id]) }}" class="btn btn-primary"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a>
+            <!-- <a href="{{ route('task.edit', ['id' => $task->id]) }}" class="btn btn-primary"> edit </a> -->
+            <a href="{{ route('task.view', ['id' => $task->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
             <a href="{{ route('task.delete', ['id' => $task->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 
         </td>
@@ -45,7 +45,7 @@
     @endforeach
     </tbody>
 @else 
-    <p><em>There are no tasks assigned yet</em></p>
+    <p><em>No match found</em></p>
 @endif
 
 
@@ -53,10 +53,9 @@
 
 
 
-<div class="btn-group">
-    <a class="btn btn-default" href="{{ redirect()->getUrlGenerator()->previous() }}">Go Back</a>
-</div>
-
+    <div class="btn-group">
+        <a class="btn btn-default" href="{{ redirect()->getUrlGenerator()->previous() }}">Go Back</a>
+    </div>
 
 
 

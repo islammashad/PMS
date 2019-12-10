@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Message;
+use App\User;
 
 class MessageController extends Controller
 {
@@ -14,7 +18,8 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::where('from_user_id', Auth::user()->id)->orWhere('to_user_id', Auth::user()->id)->orderBy('messages.updated_at', 'DESC')->get();
+        return view('message.list')->with('messages', $messages);
     }
 
     /**
@@ -24,7 +29,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+        return view('message.create');
     }
 
     /**
@@ -35,7 +40,18 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate( $request, [
+            'message_content' => 'required'
+        ] ) ;        
+
+        $message_new = new Message;
+        $message_new->content =  $request->message_content;
+        $message_new->to_user_id = $request->to_id;
+        $message_new->from_user_id = $request->from_id;
+        $message_new->save() ;
+        Session::flash('success', 'Message Sent Successfully') ;
+        return redirect()->route('message.list') ;
+
     }
 
     /**
@@ -80,6 +96,9 @@ class MessageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delete_message = Message::find($id) ;
+        $delete_message->delete() ;
+        Session::flash('success', 'Message Deleted Successfully') ;
+        return redirect()->back();
     }
 }

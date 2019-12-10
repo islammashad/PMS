@@ -73,7 +73,7 @@
 <!--  END modal  -->
 
 
-
+@include('includes.messages');
 
 
 <table class="table table-striped">
@@ -105,6 +105,8 @@
             @endif
         </td>
         <td>
+        {{-- <a data-toggle="modal" data-target="#messageModal" href="{{ route('message.create') }}" data-to_id = {{$user->id}} class="btn btn-primary"> <span class="glyphicon glyphicon-send" aria-hidden="true"></span> </a> --}}
+            <button data-toggle="modal" data-target="#messageModal" data-to_id = {{$user->id}} data-from_id = {{Auth::user()->id}} class="btn btn-primary"> <span class="glyphicon glyphicon-send" aria-hidden="true"></span> </button>
             <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
  
             <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="btn btn-danger" Onclick="return ConfirmDelete();"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
@@ -125,20 +127,15 @@
 
 @stop
 
+
 <script>
 
-function ConfirmDelete()
-{
-  var x = confirm("Are you sure? Deleting a User will also delete all tasks associated.");
-  if (x)
-      return true;
-  else
-    return false;
-}
-
-
-
-
-</script>  
-
-
+    function ConfirmDelete()
+    {
+        var x = confirm("Are you sure? Deleting a User will also delete all tasks associated.");
+        if (x)
+            return true;
+        else
+            return false;
+    }
+</script>

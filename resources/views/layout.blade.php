@@ -45,6 +45,10 @@
                         <li>
                             <a href="{{ route('project.show') }}"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Projects</a>
                         </li>
+                        
+                        <li>
+                            <a href="{{ route('message.list') }}"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span> Messages</a>
+                        </li>
 
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown" class="dropdown-toggle">Tasks <b class="caret"></b></a>

@@ -79,5 +79,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::get('/users/activate/{id}', 'UserController@activate')->name('user.activate') ; 
     Route::get('/users/delete/{id}', 'UserController@destroy')->name('user.delete') ;
     Route::get('/users/disable/{id}', 'UserController@disable')->name('user.disable') ;
+	
 
+
+	// ======================== Messages =============================
+	Route::get('/messages', 'MessageController@index')->name('message.list');
+	Route::get('/messages/create', 'MessageController@create')->name('message.create');
+	Route::post('/messages/store', 'MessageController@store')->name('message.store');
+	Route::get('/messages/delete/{id}', 'MessageController@destroy')->name('message.delete');
 });
