@@ -46,8 +46,7 @@
 <script>
 $(function(){
     $('#updateMessageModal').on('show.bs.modal', function (event) {
-        console.log('EVENT FIRED');
-
+        
         var button = $(event.relatedTarget) // Button that triggered the modal
         var msgId = button.data('msg_id') // Extract info from data-* attributes
         var toId = button.data('to_id') // Extract info from data-* attributes

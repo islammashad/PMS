@@ -13,11 +13,11 @@
 
     <div class="card text-center">
         <div class="card-header">
-        <h3>From: {{\APP\User::find($msg->from_user_id)->name}} <span>At: {{$msg->updated_at}}</span></h3>
+        <h3>From: {{\APP\User::find($msg->from_user_id)->name}} <small class="text-muted">At: {{$msg->updated_at}}</small></h3>
         </div>
         <div class="card-body">
-            <h5 class="card-title">{{$msg->content}}</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-title">{{$msg->content}}</p>
+    
             @if($msg->from_user_id == Auth::user()->id)
                 <button data-msg_id = {{$msg->id}} data-to_id = {{$msg->from_user_id}} data-from_id = {{$msg->to_user_id}} data-message_content = "{{$msg->content}}" data-toggle="modal" data-target="#updateMessageModal" class="btn btn-primary">Edit</button>
                 <a class="btn btn-danger" href="{{ route('message.delete', [ 'id' => $msg->id ]) }}" Onclick="return ConfirmDelete();">Delete</a>

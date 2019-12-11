@@ -48,16 +48,10 @@
     <p><em>There are no tasks assigned yet</em></p>
 @endif
 
-
 </table>
-
-
 
 <div class="btn-group">
     <a class="btn btn-default" href="{{ redirect()->getUrlGenerator()->previous() }}">Go Back</a>
 </div>
-
-
-
 
 @stop

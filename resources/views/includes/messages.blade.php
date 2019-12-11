@@ -43,13 +43,10 @@
 <script>
 $(function(){
     $('#messageModal').on('show.bs.modal', function (event) {
-        console.log('EVENT FIRED');
-
+        
         var button = $(event.relatedTarget) // Button that triggered the modal
         var toId = button.data('to_id') // Extract info from data-* attributes
         var fromId = button.data('from_id') // Extract info from data-* attributes
-        console.log('TOID: ', toId)
-        console.log('FROMID: ', fromId)
 
         var modal = $(this)
         modal.find('#to_id').val(toId)
