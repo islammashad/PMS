@@ -5,9 +5,11 @@
 
 <h1>LIST OF ACTIVE PROJECTS</h1>
 
+@if(Auth::user()->admin)
 <div class="new_project">
   <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add New Project</button>
 </div>
+@endif
 
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
@@ -67,8 +69,13 @@
            <a href="{{ route('task.list', [ 'projectid' => $project->id ]) }}">List all tasks</a>
         </td>
         <td>
-          <a class="btn btn-primary" href="{{ route('project.edit', [ 'id' => $project->id ]) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>          
-          <a class="btn btn-danger" href="{{ route('project.delete', [ 'id' => $project->id ]) }}" Onclick="return ConfirmDelete();"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>&nbsp;&nbsp;
+          @if(Auth::user()->admin)
+            <a class="btn btn-primary" href="{{ route('project.edit', [ 'id' => $project->id ]) }}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>          
+            <a class="btn btn-danger" href="{{ route('project.delete', [ 'id' => $project->id ]) }}" Onclick="return ConfirmDelete();"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>&nbsp;&nbsp;
+          @else
+            <a disabled class="btn btn-primary"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>          
+            <a disabled class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>&nbsp;&nbsp;
+          @endif
         </td>
 
       </tr>

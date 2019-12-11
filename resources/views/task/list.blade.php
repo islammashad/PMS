@@ -29,16 +29,25 @@
             @endif
         </td>
         <td>
-            @if ( !$task->completed )
-                <a href="{{ route('task.completed', ['id' => $task->id]) }}" class="btn btn-warning"> Mark as completed</a>
+            @if ( !$task->completed)
+                @if($task->user_id === Auth::user()->id)
+                    <a href="{{ route('task.completed', ['id' => $task->id]) }}" class="btn btn-warning"> Mark as completed</a>
+                @else 
+                    <a disabled class="btn btn-warning"> Mark as completed</a>
+                @endif
+                <span class="label label-success">Not Completed</span>
             @else
                 <span class="label label-success">Completed</span>
             @endif
         </td>
         <td>
-            <a href="{{ route('task.view', ['id' => $task->id]) }}" class="btn btn-primary"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a>
-            <a href="{{ route('task.delete', ['id' => $task->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-
+            @if(Auth::user()->admin)
+                <a href="{{ route('task.view', ['id' => $task->id]) }}" class="btn btn-primary"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a>
+                <a href="{{ route('task.delete', ['id' => $task->id]) }}" class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            @else 
+                <a disabled class="btn btn-primary"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </a>
+                <a disabled class="btn btn-danger"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+            @endif
         </td>
       </tr>
 
