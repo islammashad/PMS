@@ -86,5 +86,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 	Route::get('/messages', 'MessageController@index')->name('message.list');
 	Route::get('/messages/create', 'MessageController@create')->name('message.create');
 	Route::post('/messages/store', 'MessageController@store')->name('message.store');
+	Route::get('/messages/edit/{id}', 'MessageController@edit')->name('message.edit');
+	Route::post('/messages/update', 'MessageController@update')->name('message.update');
 	Route::get('/messages/delete/{id}', 'MessageController@destroy')->name('message.delete');
 });

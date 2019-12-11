@@ -72,9 +72,7 @@
 </div>
 <!--  END modal  -->
 
-
 @include('includes.messages');
-
 
 <table class="table table-striped">
     <thead>
@@ -86,50 +84,45 @@
       </tr>
     </thead>
 
-@if ( !$users->isEmpty() ) 
-    <tbody>
-    @foreach ( $users as $user)
-    @if ( $user->id == 1 )  @continue 
-    @endif
-      <tr>
-        <td><a href="{{ route('user.list', ['id'=> $user->id] ) }}">{{ $user->name }}</a></td>
+    @if ( !$users->isEmpty() ) 
+        <tbody>
+        @foreach ( $users as $user)
+        @if ( $user->id == 1 )  @continue 
+        @endif
+        <tr>
+            <td><a href="{{ route('user.list', ['id'=> $user->id] ) }}">{{ $user->name }}</a></td>
 
-        <td>{{ $user->email }}</td>
+            <td>{{ $user->email }}</td>
+        
+            <td>
+                @if ( !$user->admin )
+                    <a href="{{ route('user.activate', ['id' => $user->id]) }}" class="btn btn-warning"> Activate User</a>
+                @else
+                    <a href="{{ route('user.disable', ['id' => $user->id]) }}" class="btn btn-warning"> Disable User</a>
+                    <span class="label label-success">Active</span>
+                @endif
+            </td>
+            <td>
+            {{-- <a data-toggle="modal" data-target="#messageModal" href="{{ route('message.create') }}" data-to_id = {{$user->id}} class="btn btn-primary"> <span class="glyphicon glyphicon-send" aria-hidden="true"></span> </a> --}}
+                <button data-toggle="modal" data-target="#messageModal" data-to_id = {{$user->id}} data-from_id = {{Auth::user()->id}} class="btn btn-primary"> <span class="glyphicon glyphicon-send" aria-hidden="true"></span> </button>
+                <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
     
-        <td>
-            @if ( !$user->admin )
-                <a href="{{ route('user.activate', ['id' => $user->id]) }}" class="btn btn-warning"> Activate User</a>
-            @else
-                <a href="{{ route('user.disable', ['id' => $user->id]) }}" class="btn btn-warning"> Disable User</a>
-                <span class="label label-success">Active</span>
-            @endif
-        </td>
-        <td>
-        {{-- <a data-toggle="modal" data-target="#messageModal" href="{{ route('message.create') }}" data-to_id = {{$user->id}} class="btn btn-primary"> <span class="glyphicon glyphicon-send" aria-hidden="true"></span> </a> --}}
-            <button data-toggle="modal" data-target="#messageModal" data-to_id = {{$user->id}} data-from_id = {{Auth::user()->id}} class="btn btn-primary"> <span class="glyphicon glyphicon-send" aria-hidden="true"></span> </button>
-            <a href="{{ route('user.edit', ['id' => $user->id]) }}" class="btn btn-primary"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
- 
-            <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="btn btn-danger" Onclick="return ConfirmDelete();"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                <a href="{{ route('user.delete', ['id' => $user->id]) }}" class="btn btn-danger" Onclick="return ConfirmDelete();"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
 
-        </td>
-      </tr>
+            </td>
+        </tr>
 
-    @endforeach
-    </tbody>
-@else 
-    <p><em>There are no users yet</em></p>
-@endif
-
+        @endforeach
+        </tbody>
+    @else 
+        <p><em>There are no users yet</em></p>
+    @endif
 
 </table>
 
-
-
 @stop
 
-
 <script>
-
     function ConfirmDelete()
     {
         var x = confirm("Are you sure? Deleting a User will also delete all tasks associated.");

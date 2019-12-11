@@ -73,7 +73,7 @@ class MessageController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -83,9 +83,13 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $msg = Message::find($request->msg_id);
+        $msg->content = $request->message_content;
+        $msg->save();
+        Session::flash('success', 'Message was sucessfully updated') ;
+        return redirect()->route('message.list') ;
     }
 
     /**
